@@ -41,12 +41,9 @@ let shuffle l = interleave (cut l)
 
 //ex6
 let countshuffles n = 
-    let countaux(deck, target) =
-        let rec help (count, deck, target) = 
-            if (deck = target) then (count, deck, target)
-            else help (count+1, shuffle deck, target)
-        let (r, _, _) = help (0, deck, target)
-        r
+    let rec countaux(deck, target) =
+        if deck = target then 0
+        else 1 + countaux(shuffle deck, target)
     countaux(shuffle [1..n],[1..n]) + 1
 
 //samples
@@ -54,7 +51,7 @@ interleave ([1;2;3],[4;5;6]);;
 cut [1;2;3;4;5;6];;
 shuffle [1;2;3;4];;
 countshuffles 8;;
-
+countshuffles 52;;
 
 shuffle [1; 2; 3; 4; 5; 6; 7; 8];;
 shuffle [1; 5; 2; 6; 3; 7; 4; 8];;
