@@ -4,6 +4,7 @@ ex 1: could save gcd on reduce to avoid double calc on big nums
 Also, finding common denom instead to reduce computing could be better for large numbers
 *)
 
+//ex1
 let rec gcd = function
 | (a,0) -> a
 | (a,b) -> gcd (b, a % b)
@@ -17,13 +18,11 @@ let (.*) (a,b) (c,d) = reduce (a*c, b*d)
 //ex2
 let revlists l = List.map List.rev l
 
-//ex3 Really banking on l1 and l2 having equal length
-let interleave (l1, l2) =  
-    let rec interHelp (r, l1, l2) = 
-        match l1 with
-        | [] -> r
-        | x::xs -> interHelp (r @ (x::List.head l2::[]) , xs, List.tail l2)
-    interHelp([], l1, l2)
+//ex3 Really banking on l1 and l2 having equal length, otherwise it will just do it up to the smaller size
+let rec interleave = function
+| ([], l) -> []
+| (l, []) -> []
+| (x::xs, y::ys) -> x:: y :: interleave(xs, ys)   
 
 //ex4
 let gencut(n, l1) = 
