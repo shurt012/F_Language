@@ -9,9 +9,7 @@ let (.+) (a,b)(c,d) =
     let denominator = b * d  //Multiplies the denominator
     let getGCD = gcd(b,d) //Finds common denominator between the two fractions
     ((numerator/getGCD),(denominator/getGCD));; //Simplies final result
-
  (*
-  
   (1,2) .+ (1,3);;
    val it : int * int = (5, 6)
  *)
@@ -22,13 +20,11 @@ let (.+) (a,b)(c,d) =
     let denominator = b * d //Multiply the denominators
     let getGCD = gcd(numerator,denominator) // Find comming denominator 
     ((numerator/getGCD),(denominator/getGCD));; //Simplifies final result
-
     (*
      (1,2) .+ (2,3) .*(3,7);;
       val it : int * int = (11, 14)
     *)
      
-
  //Problem 2
 let revList xs = List.map(List.rev) xs;;
  (*
@@ -44,7 +40,6 @@ let rec interleave = function
    |(xs,[]) -> xs
    |([],ys) -> ys
    |(x::xs, y::ys) -> x::y::interleave(xs,ys);;
-
    (*
    interleave ([1;2;3],[4;5;6]);;
     val it : int list = [1; 4; 2; 5; 3; 6]
@@ -58,8 +53,7 @@ let gencut (n, xs) =
       |n, list1, list2 -> splitNList(n-1,  List.head list2::list1, List.tail list2)
     splitNList(n,[], xs);;
 
- let cut xs = gencut((List.length xs)/2, xs);;
-
+let cut xs = gencut((List.length xs)/2, xs);;
  (*
  cut [1..6];;
   val it : int list * int list = ([1; 2; 3], [4; 5; 6])
@@ -73,5 +67,15 @@ let gencut (n, xs) =
  *)
 
  //Problem 6
- let countshuffles = 
-   let countaux(deck, target) = 
+let countshuffles n = 
+    let rec countaux(deck, target) =
+      if deck = target then 0
+      else 1 + countaux(shuffle deck, target)
+    countaux(shuffle [1..n],[1..n]) + 1
+  (*
+   countshuffles 4;;
+    val it : int = 2
+
+    countshuffles 52;;
+     val it : int = 8
+  )
