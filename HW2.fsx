@@ -21,9 +21,9 @@ let rec transpose = function
     
 /// 4. Correctness of sort recursive function with respect to the Checklist for Programming with Recursion
 (*
-Step One:
-Step Two:
-Step Three:
+Step One: It is okay, because empty lists are automatically sorted
+Step Two: Non base case returns the correct answer.
+Step Three: Each recursive call gets an input that is smaller than the original input
 *)
 let rec sort = function
   | []         -> []
@@ -33,9 +33,9 @@ let rec sort = function
 
 /// 5. Analyze mergesort with respect to the Checking for Programming with Recursion (merge and split work correctly)
 (*
-Step One:
-Step Two:
-Step Three:
+Step One: It is okay, because empty lists are automatically sorted
+Step Two: Non base case did not previously exist. Added as | [x] -> [x] in order to correct this
+Step Three: Each recursive call gets an input that is smaller than the original input
 
 Clue something is wrong: The mergesort function is missing a case, which causes mergesort to be seen by 
 the compiler as 'a list -> 'b list instead of 'a list -> 'a list
