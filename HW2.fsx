@@ -1,4 +1,5 @@
-    (* Homework 2
+(* Homework 2
+
 *)
 
 /// 1. Returns a list of pairs that represents the cartesian product
@@ -40,6 +41,7 @@ let rec sort = function
 Step One: It is okay, because empty lists are automatically sorted
 Step Two: Non base case did not previously exist. Added as | [x] -> [x] in order to correct this
 Step Three: Each recursive call gets an input that is smaller than the original input
+
 Clue something is wrong: The mergesort function is missing a case, which causes mergesort to be seen by 
 the compiler as 'a list -> 'b list instead of 'a list -> 'a list
 *)
@@ -70,4 +72,3 @@ let uncurry f (a,b) = f a b
 val curry : ('a * 'b -> 'c) -> 'a -> 'b -> 'c
 val uncurry : ('a -> 'b -> 'c) -> 'a * 'b -> 'c
 *)
-
