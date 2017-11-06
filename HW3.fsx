@@ -25,8 +25,29 @@ let makelistlist n = List.map (fun x -> [x]) [1..n]
 (*In practice flatten1 behaves as O(n^2) and flatten2 is (O(n))*)
 
 // 4
+(*
+    twice successor 0 would be 2 = 2^1
+    twice twice successor 0 would be 4 = 2^2
+    twice twice twice successor 0 would be 16 = 2^4
+    And so on..
+
+    The current value becomes equals to 2 to the power of the previous value
+
+    The function will be defined recursively, as follows:
+        f(n) = 
+            if n = 0 then 1
+            else 2 ^ (f(n-1))
+
+    We can write this function as:
+    let rec f = function
+        | 0 -> 1.0
+        | n -> 2.0 ** (f (n-1));;
+*)
 
 // 5
+type 'a stream = Cons of 'a * (unit -> 'a stream);;
+
+let rec map f (Cons(x, xsf)) = Cons (f x, fun() -> map f (xsf()));;
 
 // 6
 type Exp = Num of int
